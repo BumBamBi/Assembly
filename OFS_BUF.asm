@@ -1,0 +1,42 @@
+; Offset을 이용한 Data 출력
+
+CODE SEGMENT
+	ASSUME CS:CODE, DS:CODE
+
+CR	EQU 0DH
+LF	EQU 0AH
+
+	MOV AX, CODE
+	MOV DS, AX
+
+	MOV BX, OFFSET BUFFER
+	MOV SI, 2
+
+	MOV DL, [BX+SI]
+	MOV AH, 2
+	INT 21H		;a출력
+
+	MOV DL, [BX+SI+1]
+	MOV AH, 2
+	INT 21H		;m출력
+
+	MOV DL, CR
+	MOV AH, 2
+	INT 21H		;줄 바꿈
+	
+	MOV DL, LF
+	MOV AH, 2
+	INT 21H		;줄 바꿈
+
+	MOV DL, [BX+SI+2]
+	MOV AH, 2
+	INT 21H		;p출력
+
+	MOV AH, 4CH	;끝날때 선언
+	INT 21H
+
+BUFFER	DB 'example.'
+
+CODE ENDS
+
+END

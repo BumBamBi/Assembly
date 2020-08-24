@@ -1,0 +1,32 @@
+; STACK이용해서 역순 출력하기
+
+MAIN	SEGMENT
+	ASSUME	CS:MAIN, DS:MAIN
+
+	MOV	AX, CS
+	MOV	DS, AX
+
+
+	MOV	CX, 10		
+L1:
+	MOV	AH, 1
+	INT	21H
+
+	MOV	DX, AX
+
+	PUSH	DX	
+
+	LOOP	L1
+
+	MOV	CX, 10
+L2:
+	POP	DX
+	MOV	AH, 2
+	INT	21H
+	LOOP	L2
+
+	MOV	AH, 4CH
+	INT	21H		; 종료
+
+MAIN	ENDS
+	END

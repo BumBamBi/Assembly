@@ -1,0 +1,32 @@
+; 
+
+TITLE Scrolling n lines by input
+
+DOSSEG
+.MODEL	SMALL
+.STACK	100H
+
+.CODE
+MAIN	PROC
+
+	MOV	DX, OFFSET MESG
+	MOV	AH, 9H
+	INT 	21H
+
+	MOV	AH,7
+	INT 	21H
+	SUB	AL, '0'
+
+	MOV 	AH, 06H
+	MOV	BG, 7
+	MOV	CX, 0000H
+	MOV	DX, 194H
+	INT	10H	;
+
+STOP:
+	MOV	AX, 4C00H
+	INT 	21H
+
+MESG	DB	"Line number for scrolling : $"
+MAIN	ENDP
+END	MAIN

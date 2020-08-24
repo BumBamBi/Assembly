@@ -1,0 +1,31 @@
+; 변수A(2) + 변수B(5) 더하기
+
+TITLE	2.ASM
+
+.MODEL	SMALL
+.STACK	100H
+.DATA
+A	DB	2
+B	DB	5
+SUM	DB	?
+
+.CODE
+MAIN	PROC
+	MOV	AX, @DATA
+	MOV	DS, AX
+
+	MOV	AL, A
+	ADD	AL, B	; AL = AL + B
+	
+	MOV	SUM, AL	; SUM = AL
+	
+	ADD	AL, '0'
+	MOV	DL, AL
+	MOV	AH, 2
+	INT	21H
+
+	MOV	AX, 4C00H
+	INT	21H
+
+MAIN	ENDP
+	END	MAIN

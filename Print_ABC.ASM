@@ -1,0 +1,30 @@
+; A,B,C 출력하기
+
+MAIN	SEGMENT
+	ASSUME	CS:MAIN,	DS:MAIN
+	
+	MOV	AX, CS	
+	MOV	DS, AX
+
+	MOV	BX, OFFSET L1O
+
+	MOV	DL, [BX]
+	MOV	AH, 2
+	INT	21H		; 'A' 출력
+
+	MOV	DL, [BX+1]
+	MOV	AH, 2
+	INT	21H		; 'B' 출력
+
+	MOV	DL, [BX+2]
+	MOV	AH, 2
+	INT	21H		; 'C' 출력
+
+	MOV	AH,4CH
+	INT	21H		; 종료
+
+
+L1	DB	'ABC'
+
+MAIN	ENDS
+	END

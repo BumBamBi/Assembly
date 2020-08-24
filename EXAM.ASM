@@ -1,0 +1,23 @@
+; exam
+
+MAIN	SEGMENT
+	ASSUME	CS:MAIN, DS:MAIN
+
+	MOV	AX, CS
+	MOV	DS, AX
+
+	MOV	AH, 1
+	INT	21H		;에코있는 입력
+
+	MOV	DL, AL
+	ADD	DL, -17
+
+	MOV	AH, 2
+	INT	21H
+
+	MOV	AH, 4CH
+	INT	21H
+
+
+MAIN	ENDS
+	END
